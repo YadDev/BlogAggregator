@@ -5,7 +5,11 @@
 	<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 	<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 	
-	<form:form commandName="user" cssClass="form-horizontal">
+	<form:form commandName="user" cssClass="form-horizontal" action="register.html" method="POST">
+			<c:if test="${param.success eq true}">
+					<div class="alert alert-success">Registration Successful !</div>
+			</c:if>
+	
 			<div class="form-group">
 				<label for="name" class="col-sm-2 control-label">Name:</label>
 				<div class="col-sm-10">

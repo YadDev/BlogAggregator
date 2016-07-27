@@ -27,6 +27,17 @@ public class User {
 	
 	private String password;
 	
+	private boolean enable;
+	
+	
+	public boolean isEnable() {
+		return enable;
+	}
+
+	public void setEnable(boolean enable) {
+		this.enable = enable;
+	}
+
 	@ManyToMany
 	@JoinTable
 	private List<Role> roles;

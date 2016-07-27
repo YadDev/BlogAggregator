@@ -43,8 +43,8 @@ public class UserController {
 	
 	@RequestMapping(value="/register",method=RequestMethod.POST)
 	public String doRegistration(@ModelAttribute("user") User user ){
-		System.out.println("User id: "+ user.getId().toString());
+		System.out.println("User id: "+ user.getName());
 		userService.save(user);
-		return "user-register";
+		return "redirect:/user-register?success=true";
 	}
 }
