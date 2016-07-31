@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	    pageEncoding="UTF-8"%>
 	
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
@@ -10,13 +10,13 @@
 	</button>
 
 <!-- Modal -->
-<<form:form commandName="blog">
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<form:form commandName="blog" cssClass="form-horizontal">
+ <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        <h4 class="modal-title" id="myModalLabel">Add New Blog</h4>
       </div>
       <div class="modal-body">
         <div class="form-group">
@@ -35,15 +35,23 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <input type="submit" class="btn btn-primary" value="save">
-        <button type="button" class="btn btn-primary">Save changes</button>
+        
       </div>
     </div>
   </div>
 </div>
 </form:form>
 	<br><br><br>
-<div>
-
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('.nav-tabs a:first').tab('show') // Select first tab
+		 /* $(".triggerRemove").click(function(e){
+			e.preventDefault;
+			$("#modalRemove .removeBtn").attr("href",$(this).attr("href"));
+			$("#modelRemove").modal();
+		});  */
+	});
+</script>
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
   	<c:forEach items="${user.blogs}" var="blog">
@@ -55,45 +63,15 @@
 
   <!-- Tab panes -->
   <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="home">...</div>
-    <div role="tabpanel" class="tab-pane" id="profile">...</div>
-    <div role="tabpanel" class="tab-pane" id="messages">...</div>
-    <div role="tabpanel" class="tab-pane" id="settings">...</div>
-  </div>
-
-</div>
-	
-	<br><br><br>
-	
-	<table class="table table-bordered table-hover table-striped">
-			<thead>
-				<tr>
-					<th>User ID</th>
-					<th>User Name</th>
-				</tr>
-				
-			</thead>
-			<tbody>
-				
-					<tr>
-						<td>
-							${user.id}
-						</td>
-						<td>
-							${user.name}
-						</td>
-					</tr>
-					
-				
-			</tbody>
-	</table> 
-	
-	<c:forEach items="${user.blogs}" var="blog">
-	
-			<h1>
+  <c:forEach items="${user.blogs}" var="blog">
+    <div class="tab-pane" id="blog_${blog.id}">
+    		<h1>
 				${blog.name}
 			</h1>
 			<p>
+					
+					<a href="<spring:url value="/blog/remove/${blog.id}.html"/>" class="btn btn-danger triggerRemove">Delete Blog</a>			
+			
 				${blog.url}
 			</p>
 	
@@ -117,8 +95,35 @@
 					</tr>	
 					</c:forEach>
 			</tbody>
-	</table>
-	</c:forEach>
+	</table>	
+    
+    </div>
+      
+  </c:forEach>	
+</div>
+	
+	<!-- Confirm Modal -->
+	
+<!-- 	<div class="modal fade" id="modalRemove" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <a href="" class="btn btn-danger removeBtn">Delete Blog</a>
+      </div>
+    </div>
+  </div>
+</div>
+--> 
+		
+	
 	
 	 
 	

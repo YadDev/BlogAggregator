@@ -70,10 +70,23 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/account",method=RequestMethod.POST)
-	public String doBlog(@ModelAttribute("blog") Blog blog,Principal principal ){
+	public String doAddBlog(@ModelAttribute("blog") Blog blog,Principal principal ){
 		String name=principal.getName();
 		blogService.save(blog,name);
 		return "redirect:/account.html";
 	}
 	
+	@RequestMapping("/blog/remove/{id}")
+	public String removeBlog(@PathVariable int id){
+		
+		blogService.delete(id);
+		return "redirect:/account.html";
+	}
+		
+	@RequestMapping("/user/remove/{id}")
+	public String removeUser(@PathVariable int id){
+		
+		userService.delete(id);
+		return "redirect:/users.html";
+	}
 }
